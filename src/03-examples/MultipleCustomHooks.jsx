@@ -27,6 +27,11 @@ export const MultipleCustomHooks = () => {
         <h1>BreakingBad Quotes</h1>
         <hr />
 
+        {/* <pre>{JSON.stringify(data, null, 2)}</pre>  */}
+        {/* Este es un if (Si tenemos Data, busca el Name) */}
+        {/* <h2>{data?.author}</h2>  */}
+        <hr />
+
         {/*****************************************************************Aca abajo hacemos un ternario*********************************************************************/}
         {
            isLoading  

@@ -6,6 +6,8 @@ export const CallbackHook = () => {
     //o********************************************useState**********************************************
     const [counter, setCounter] = useState( 10 );
 
+
+    
     //o********************************************useCallback**********************************************
     //Sirve para memorizar funciones y Retorna una Función que yo puedo ejecutar
     //Pero esa función solo se va a volver a procesar cuando algo cambie 

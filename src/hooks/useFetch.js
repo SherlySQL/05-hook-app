@@ -30,15 +30,36 @@ export const useFetch = ( url ) => {
                 const data = await resp.json();
                 console.log(data);  //getFetch imprime la data del Api en consola 
 
+                //Sleep
+                //retraso de 1,5 segundos
+                await new Promise (resolve => setTimeout(resolve, 1500));
 
-                //PASO #3
+
+                //PASO #3 RESP CON ERROR
+                //si llamo al setState tengo que llamar a cada una de sus propiedades
+                if (!resp.ok) {//Si la resp falló (puedo haber sido por conexión a internet, o url no valido)
+                    setState({
+                        data:null, //viene vacia, no hubo respuesta
+                        isLoading: false, //lo pongo en falso porque ya no estamos cargando, ya tenemos una respuesta
+                        hasError: true, //hay error 
+                        error: {
+                            code:resp.status,
+                            message: resp.statusText,
+                        }
+                    });
+                    return; //si hay un error, paremos todo y salgase
+                }
+
+
+                //PASO #3 RESP SIN ERROR
                 //si llamo al setState tengo que llamar a cada una de sus propiedades
                 setState({
                     data, // Aqui se carga en la variable DATA: la data prometida con el fetch del Api
                     //data: data, //la linea anterior tambien la puedo poner asi 
                     isLoading: false, //termino el proceso ya no estamos cargando por ello isLoading va en "false"
                     hasError: null, //no hay error por hasError ello va "null"
-                });
+                    error: null,
+                });      
         }
 
     //*****************************************El useEffect dispara el getFetch****************************************************************************
